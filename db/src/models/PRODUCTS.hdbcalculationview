@@ -149,7 +149,7 @@
       <viewAttribute id="COUNTRY"/>
       <viewAttribute id="REGION"/>
       <viewAttribute id="ProductName"/>
-      <viewAttribute id="TEXT"/>
+      <viewAttribute id="ProductDesc"/>
       <viewAttribute hidden="true" id="JOIN$DESCID$TEXTID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -170,7 +170,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DESCID$TEXTID" source="DESCID"/>
     </input>
     <input node="Product_Desc$$$$Util.Texts$$">
-      <mapping xsi:type="Calculation:AttributeMapping" target="TEXT" source="TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductDesc" source="TEXT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DESCID$TEXTID" source="TEXTID"/>
     </input>
     <joinAttribute name="JOIN$DESCID$TEXTID"/>
@@ -230,9 +230,9 @@
       <descriptions defaultDescription="Text"/>
       <keyMapping columnObjectName="Product_Desc" columnName="ProductName"/>
     </attribute>
-    <attribute id="TEXT" order="14" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProductDesc" order="14" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Text"/>
-      <keyMapping columnObjectName="Product_Desc" columnName="TEXT"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="ProductDesc"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -243,7 +243,7 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="302" y="491.9999976158142"/>
+      <upperLeftCorner x="302" y="491"/>
     
       <rectangleSize width="160"/>
     </shape>
@@ -254,11 +254,11 @@
     </shape>
     <shape modelObjectName="MD.Products" modelObjectNameSpace="Product_BP" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="278.97265625"/>
+      <rectangleSize width="278"/>
     </shape>
     <shape modelObjectName="MD.BusinessPartner" modelObjectNameSpace="Product_BP" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="278.97265625"/>
+      <rectangleSize width="278"/>
     </shape>
     <shape expanded="true" modelObjectName="Address" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="305" y="826"/>
@@ -266,11 +266,11 @@
     </shape>
     <shape modelObjectName="Product_BP" modelObjectNameSpace="Address" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="224.14990234375"/>
+      <rectangleSize width="224"/>
     </shape>
     <shape modelObjectName="MD.Addresses" modelObjectNameSpace="Address" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="199.287109375"/>
+      <rectangleSize width="199"/>
     </shape>
     <shape expanded="true" modelObjectName="Product_Name" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="305" y="704"/>
@@ -278,11 +278,11 @@
     </shape>
     <shape modelObjectName="Address" modelObjectNameSpace="Product_Name" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="160.3681640625"/>
+      <rectangleSize width="160"/>
     </shape>
     <shape modelObjectName="Util.Texts" modelObjectNameSpace="Product_Name" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="166.07763671875"/>
+      <rectangleSize width="166"/>
     </shape>
     <shape expanded="true" modelObjectName="Product_Desc" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="305" y="583"/>
