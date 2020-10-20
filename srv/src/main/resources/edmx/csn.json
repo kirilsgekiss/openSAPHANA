@@ -1377,6 +1377,244 @@
       },
       "@cds.persistence.name": "OPENSAP_PURCHASEORDER_ITEMVIEW"
     },
+    "BusinessKey": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10,
+      "@cds.persistence.name": "BUSINESSKEY"
+    },
+    "SDate": {
+      "kind": "type",
+      "type": "cds.DateTime",
+      "@cds.persistence.name": "SDATE"
+    },
+    "CurrencyT": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 5,
+      "@cds.persistence.name": "CURRENCYT"
+    },
+    "AmountT": {
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 15,
+      "scale": 2,
+      "@cds.persistence.name": "AMOUNTT"
+    },
+    "QuantityT": {
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 13,
+      "scale": 3,
+      "@cds.persistence.name": "QUANTITYT"
+    },
+    "UnitT": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3,
+      "@cds.persistence.name": "UNITT"
+    },
+    "StatusT": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "@cds.persistence.name": "STATUST"
+    },
+    "PURCHASE_ORDER_ITEM_VIEW": {
+      "kind": "entity",
+      "elements": {
+        "PO_ITEM_ID": {
+          "key": true,
+          "indexNo": 1,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "PO_ITEM_ID"
+        },
+        "PARTNER_ID": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "PARTNER_ID"
+        },
+        "PRODUCT_ID": {
+          "key": true,
+          "indexNo": 3,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "PRODUCT_ID"
+        },
+        "CURRENCY_CODE": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "length": 5,
+          "@cds.persistence.name": "CURRENCY_CODE"
+        },
+        "AMOUNT": {
+          "indexNo": 5,
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 2,
+          "@cds.persistence.name": "AMOUNT"
+        },
+        "NET_AMOUNT": {
+          "indexNo": 6,
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 2,
+          "@cds.persistence.name": "NET_AMOUNT"
+        },
+        "TAX_AMOUNT": {
+          "indexNo": 7,
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 2,
+          "@cds.persistence.name": "TAX_AMOUNT"
+        },
+        "QUANTITY": {
+          "indexNo": 8,
+          "type": "cds.Decimal",
+          "precision": 13,
+          "scale": 3,
+          "@cds.persistence.name": "QUANTITY"
+        },
+        "QUANTITY_UNIT": {
+          "indexNo": 9,
+          "type": "cds.String",
+          "length": 3,
+          "@cds.persistence.name": "QUANTITY_UNIT"
+        },
+        "DELIVERY_DATE": {
+          "indexNo": 10,
+          "type": "cds.DateTime",
+          "@cds.persistence.name": "DELIVERY_DATE"
+        }
+      },
+      "@cds.persistence.exists": true,
+      "@cds.persistence.name": "PURCHASE_ORDER_ITEM_VIEW"
+    },
+    "BUYER": {
+      "kind": "entity",
+      "elements": {
+        "BUILDING": {
+          "indexNo": 1,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "BUILDING"
+        },
+        "CITY": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 40,
+          "@cds.persistence.name": "CITY"
+        },
+        "COMPANYNAME": {
+          "indexNo": 3,
+          "type": "cds.String",
+          "length": 80,
+          "@cds.persistence.name": "COMPANYNAME"
+        },
+        "COUNTRY": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "length": 3,
+          "@cds.persistence.name": "COUNTRY"
+        },
+        "EMAILADDRESS": {
+          "indexNo": 5,
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "EMAILADDRESS"
+        },
+        "LEGALFORM": {
+          "indexNo": 6,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "LEGALFORM"
+        },
+        "PARTNERID": {
+          "key": true,
+          "indexNo": 7,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "PARTNERID"
+        },
+        "PARTNERROLE": {
+          "indexNo": 8,
+          "type": "cds.String",
+          "length": 3,
+          "@cds.persistence.name": "PARTNERROLE"
+        },
+        "POSTALCODE": {
+          "indexNo": 9,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "POSTALCODE"
+        },
+        "REGION": {
+          "indexNo": 10,
+          "type": "cds.String",
+          "length": 4,
+          "@cds.persistence.name": "REGION"
+        },
+        "STREET": {
+          "indexNo": 11,
+          "type": "cds.String",
+          "length": 60,
+          "@cds.persistence.name": "STREET"
+        }
+      },
+      "@cds.persistence.exists": true,
+      "@cds.persistence.name": "BUYER"
+    },
+    "USER_DETAILS": {
+      "kind": "entity",
+      "elements": {
+        "EMAIL": {
+          "indexNo": 1,
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "EMAIL"
+        },
+        "FIRSTNAME": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 40,
+          "@cds.persistence.name": "FIRSTNAME"
+        },
+        "LASTNAME": {
+          "indexNo": 3,
+          "type": "cds.String",
+          "length": 40,
+          "@cds.persistence.name": "LASTNAME"
+        },
+        "USERID": {
+          "key": true,
+          "indexNo": 4,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "USERID"
+        }
+      },
+      "@cds.persistence.exists": true,
+      "@cds.persistence.name": "USER_DETAILS"
+    },
+    "CURRENCY": {
+      "kind": "entity",
+      "elements": {
+        "CODE": {
+          "key": true,
+          "indexNo": 1,
+          "type": "cds.String",
+          "length": 3,
+          "@cds.persistence.name": "CODE"
+        },
+        "CURRENCY": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 80,
+          "@cds.persistence.name": "CURRENCY"
+        }
+      },
+      "@cds.persistence.exists": true,
+      "@cds.persistence.name": "CURRENCY"
+    },
     "CatalogService.sap_common_Countries": {
       "kind": "entity",
       "source": "sap.common.Countries",
