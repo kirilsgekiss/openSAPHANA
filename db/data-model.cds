@@ -1,6 +1,10 @@
 namespace my.bookshop;
 using { User, Country, managed } from '@sap/cds/common';
+using from '../db/PurchaseOrder';
 
+entity Base {
+	key ID : Integer;
+}
 entity Books {
   key ID : Integer;
   title  : localized String;
