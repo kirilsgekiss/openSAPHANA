@@ -27,171 +27,95 @@
   <edmx:DataServices>
     <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="EntityContainer">
-        <EntitySet Name="Books" EntityType="CatalogService.Books">
-          <NavigationPropertyBinding Path="author" Target="Authors"/>
+        <EntitySet Name="POs" EntityType="CatalogService.POs">
+          <NavigationPropertyBinding Path="ITEMS" Target="POItems"/>
         </EntitySet>
-        <EntitySet Name="Authors" EntityType="CatalogService.Authors">
-          <NavigationPropertyBinding Path="books" Target="Books"/>
+        <EntitySet Name="POItems" EntityType="CatalogService.POItems">
+          <NavigationPropertyBinding Path="POHeader" Target="POs"/>
         </EntitySet>
-        <EntitySet Name="Orders" EntityType="CatalogService.Orders">
-          <NavigationPropertyBinding Path="book" Target="Books"/>
-          <NavigationPropertyBinding Path="country" Target="sap_common_Countries"/>
-        </EntitySet>
-        <EntitySet Name="sap_common_Countries" EntityType="CatalogService.sap_common_Countries"/>
       </EntityContainer>
-      <EntityType Name="Books">
+      <EntityType Name="POs">
         <Key>
-          <PropertyRef Name="ID"/>
+          <PropertyRef Name="PURCHASEORDERID"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
-        <Property Name="title" Type="Edm.String"/>
-        <NavigationProperty Name="author" Type="CatalogService.Authors" Partner="books">
-          <ReferentialConstraint Property="author_ID" ReferencedProperty="ID"/>
+        <Property Name="PURCHASEORDERID" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="ITEMS" Type="Collection(CatalogService.POItems)" Partner="POHeader">
+          <ReferentialConstraint Property="PURCHASEORDERID" ReferencedProperty="POHeader_PURCHASEORDERID"/>
         </NavigationProperty>
-        <Property Name="stock" Type="Edm.Int32"/>
-        <Property Name="author_ID" Type="Edm.Int32"/>
+        <Property Name="NOTEID" Type="Edm.String" MaxLength="10"/>
+        <Property Name="PARTNER" Type="Edm.String" MaxLength="10"/>
+        <Property Name="CURRENCY" Type="Edm.String" MaxLength="5"/>
+        <Property Name="GROSSAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="NETAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="TAXAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="LIFECYCLESTATUS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="APPROVALSTATUS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="CONFIRMSTATUS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="ORDERINGSTATUS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="INVOICINGSTATUS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="HISTORY_CREATEDBY" Type="Edm.String" MaxLength="10"/>
+        <Property Name="HISTORY_CREATEDAT" Type="Edm.DateTimeOffset"/>
+        <Property Name="HISTORY_CHANGEDBY" Type="Edm.String" MaxLength="10"/>
+        <Property Name="HISTORY_CHANGEDAT" Type="Edm.DateTimeOffset"/>
       </EntityType>
-      <EntityType Name="Authors">
+      <EntityType Name="POItems">
         <Key>
-          <PropertyRef Name="ID"/>
+          <PropertyRef Name="PRODUCT"/>
+          <PropertyRef Name="POHeader_PURCHASEORDERID"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
-        <Property Name="name" Type="Edm.String"/>
-        <NavigationProperty Name="books" Type="Collection(CatalogService.Books)" Partner="author"/>
-      </EntityType>
-      <EntityType Name="Orders">
-        <Key>
-          <PropertyRef Name="ID"/>
-        </Key>
-        <Property Name="modifiedAt" Type="Edm.DateTimeOffset"/>
-        <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
-        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
-        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
-        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
-        <NavigationProperty Name="book" Type="CatalogService.Books">
-          <ReferentialConstraint Property="book_ID" ReferencedProperty="ID"/>
+        <NavigationProperty Name="POHeader" Type="CatalogService.POs" Partner="ITEMS">
+          <ReferentialConstraint Property="POHeader_PURCHASEORDERID" ReferencedProperty="PURCHASEORDERID"/>
         </NavigationProperty>
-        <NavigationProperty Name="country" Type="CatalogService.sap_common_Countries">
-          <ReferentialConstraint Property="country_code" ReferencedProperty="code"/>
-        </NavigationProperty>
-        <Property Name="amount" Type="Edm.Int32"/>
-        <Property Name="book_ID" Type="Edm.Int32"/>
-        <Property Name="country_code" Type="Edm.String" MaxLength="3"/>
+        <Property Name="PRODUCT" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="NOTEID" Type="Edm.String" MaxLength="10"/>
+        <Property Name="CURRENCY" Type="Edm.String" MaxLength="5"/>
+        <Property Name="GROSSAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="NETAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="TAXAMOUNT" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="QUANTITY" Type="Edm.Decimal" Scale="3" Precision="13"/>
+        <Property Name="QUANTITYUNIT" Type="Edm.String" MaxLength="3"/>
+        <Property Name="DELIVERYDATE" Type="Edm.DateTimeOffset"/>
+        <Property Name="POHeader_PURCHASEORDERID" Type="Edm.Int32" Nullable="false"/>
       </EntityType>
-      <EntityType Name="sap_common_Countries">
-        <Key>
-          <PropertyRef Name="code"/>
-        </Key>
-        <Property Name="name" Type="Edm.String" MaxLength="255"/>
-        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
-        <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
-      </EntityType>
-      <Annotations Target="CatalogService.Books"/>
-      <Annotations Target="CatalogService.EntityContainer/Books">
-        <Annotation Term="Capabilities.DeleteRestrictions">
-          <Record Type="Capabilities.DeleteRestrictionsType">
-            <PropertyValue Property="Deletable" Bool="false"/>
-          </Record>
-        </Annotation>
+      <Annotations Target="CatalogService.POs">
+        <Annotation Term="Common.Label" String="{i18n>poService}"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/POs">
         <Annotation Term="Capabilities.InsertRestrictions">
           <Record Type="Capabilities.InsertRestrictionsType">
-            <PropertyValue Property="Insertable" Bool="false"/>
+            <PropertyValue Property="Insertable" Bool="true"/>
           </Record>
         </Annotation>
         <Annotation Term="Capabilities.UpdateRestrictions">
           <Record Type="Capabilities.UpdateRestrictionsType">
-            <PropertyValue Property="Updatable" Bool="false"/>
+            <PropertyValue Property="Updatable" Bool="true"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="true"/>
           </Record>
         </Annotation>
       </Annotations>
-      <Annotations Target="CatalogService.Authors"/>
-      <Annotations Target="CatalogService.EntityContainer/Authors">
-        <Annotation Term="Capabilities.DeleteRestrictions">
-          <Record Type="Capabilities.DeleteRestrictionsType">
-            <PropertyValue Property="Deletable" Bool="false"/>
-          </Record>
-        </Annotation>
+      <Annotations Target="CatalogService.POItems">
+        <Annotation Term="Common.Label" String="{i18n>poService}"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/POItems">
         <Annotation Term="Capabilities.InsertRestrictions">
           <Record Type="Capabilities.InsertRestrictionsType">
-            <PropertyValue Property="Insertable" Bool="false"/>
+            <PropertyValue Property="Insertable" Bool="true"/>
           </Record>
         </Annotation>
         <Annotation Term="Capabilities.UpdateRestrictions">
           <Record Type="Capabilities.UpdateRestrictionsType">
-            <PropertyValue Property="Updatable" Bool="false"/>
+            <PropertyValue Property="Updatable" Bool="true"/>
           </Record>
         </Annotation>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/modifiedAt">
-        <Annotation Term="UI.HiddenFilter" Bool="true"/>
-        <Annotation Term="Common.Label" String="Changed On"/>
-        <Annotation Term="Core.Immutable" Bool="true"/>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/createdAt">
-        <Annotation Term="UI.HiddenFilter" Bool="true"/>
-        <Annotation Term="Common.Label" String="Created On"/>
-        <Annotation Term="Core.Immutable" Bool="true"/>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/createdBy">
-        <Annotation Term="UI.HiddenFilter" Bool="true"/>
-        <Annotation Term="Common.Label" String="Created By"/>
-        <Annotation Term="Core.Immutable" Bool="true"/>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/modifiedBy">
-        <Annotation Term="UI.HiddenFilter" Bool="true"/>
-        <Annotation Term="Common.Label" String="Changed By"/>
-        <Annotation Term="Core.Immutable" Bool="true"/>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/country">
-        <Annotation Term="Common.ValueList">
-          <Record Type="Common.ValueListType">
-            <PropertyValue Property="Label" String="Country Code"/>
-            <PropertyValue Property="CollectionPath" String="sap_common_Countries"/>
-            <PropertyValue Property="Parameters">
-              <Collection>
-                <Record Type="Common.ValueListParameterInOut">
-                  <PropertyValue Property="LocalDataProperty" PropertyPath="country_code"/>
-                  <PropertyValue Property="ValueListProperty" String="code"/>
-                </Record>
-              </Collection>
-            </PropertyValue>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="true"/>
           </Record>
         </Annotation>
-        <Annotation Term="Common.Label" String="Country Code"/>
-      </Annotations>
-      <Annotations Target="CatalogService.Orders/country_code">
-        <Annotation Term="Common.ValueList">
-          <Record Type="Common.ValueListType">
-            <PropertyValue Property="Label" String="Country Code"/>
-            <PropertyValue Property="CollectionPath" String="sap_common_Countries"/>
-            <PropertyValue Property="Parameters">
-              <Collection>
-                <Record Type="Common.ValueListParameterInOut">
-                  <PropertyValue Property="LocalDataProperty" PropertyPath="country_code"/>
-                  <PropertyValue Property="ValueListProperty" String="code"/>
-                </Record>
-              </Collection>
-            </PropertyValue>
-          </Record>
-        </Annotation>
-        <Annotation Term="Common.Label" String="Country Code"/>
-      </Annotations>
-      <Annotations Target="CatalogService.sap_common_Countries/code">
-        <Annotation Term="Common.ValueList">
-          <Record Type="Common.ValueListType">
-            <PropertyValue Property="Label" String="Country Code"/>
-            <PropertyValue Property="CollectionPath" String="sap_common_Countries"/>
-            <PropertyValue Property="Parameters">
-              <Collection>
-                <Record Type="Common.ValueListParameterInOut">
-                  <PropertyValue Property="LocalDataProperty" PropertyPath="code"/>
-                  <PropertyValue Property="ValueListProperty" String="code"/>
-                </Record>
-              </Collection>
-            </PropertyValue>
-          </Record>
-        </Annotation>
-        <Annotation Term="Common.Label" String="Country Code"/>
       </Annotations>
     </Schema>
   </edmx:DataServices>

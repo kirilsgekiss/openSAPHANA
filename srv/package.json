@@ -10,9 +10,9 @@
     "engines": {
         "node": ">=4.0.0 <9.0.0"
     },
-    "devDependencies": {},
+    "devDependencies": { "sqlite3": "*" },
     "scripts": {
-        "postinstall": "npm dedupe && node .build.js",
+    	"postinstall": "npm dedupe && node .build.js && cds build/all --project .. --clean",
         "start": "node ./node_modules/@sap/cds/bin/cds.js serve gen/csn.json",
         "watch": "nodemon -w . -i node_modules/**,.git/** -e cds -x npm run build"
     },
